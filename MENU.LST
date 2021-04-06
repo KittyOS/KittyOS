@@ -1,0 +1,33 @@
+#This file is only of use if you also install grub4dos to your USB drive
+#Lines starting with # are comments
+
+#valid colours are: black, blue, green, cyan, red, magenta, brown, light-gray, dark-gray, light-blue, light-green, light-cyan, light-red, light-magenta, yellow and white
+#color pairs are : NORMAL HIGHLIGHT HELPTEXT HEADING consisting of foreground/background
+color black/cyan red/yellow light-red/light-blue white/light-cyan
+timeout 5
+default 2
+
+#These next two lines overwrites the grub4dos info with a nice title
+write (md)0x220+1 !BAT\necho -n -P:0000 $[0133]                      --- GRUB FreeDos Cpcdos ---                          index=     \0
+initscript (md)0x220+1
+
+#Put a section heading here
+title           ******** MY FREEDOS-CPCDOS BOOT DRIVE ********\nPlease user the cursor keys or type a number to select a menu item
+root ()
+
+title 旼컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴커
+root
+   
+title | Boot FreeDOS-Cpcdos OSx as Hard Disk 0           |\n Boot FreeDos-Cpcdos from this USB drive as Hard Disk C: 
+map --unhook
+map --unmap=0:0x82
+
+#Next line checks if we booted as a floppy drive (0) - if so we cannot convert to a hard disk
+checkrange 0x00 read 0x8280 && clear && find && echo Sorry - cannot map this floppy device as a hard disk! && pause && configfile (bd)/menu.lst
+find
+rootnoverify (hd0,0)
+chainloader /kernel.sys
+clear
+
+title 읕컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴컴켸
+root
