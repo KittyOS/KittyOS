@@ -1,0 +1,7 @@
+Fonction/ MonBouton.MouseClick()
+	// Code a executer
+FIN/ Fonction
+
+Fonction/ MonBouton.MouseClick(bouton)
+	// Code a executer
+FIN/ Fonction
